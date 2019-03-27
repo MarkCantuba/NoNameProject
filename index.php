@@ -1,3 +1,14 @@
+<?php
+    require_once("./scripts/dbconfig.php");
+    session_start();
+    
+    if (isset($_POST['processLogin'])) {
+        
+        $username = $_POST['userLogin'];
+        $password = $_POST['passwordLogin'];
+              
+    }
+?>    
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,9 +51,9 @@
 
                     <!-- NavBar Buttons -->
                     <div>
-                        <button class="btn btn-dark text-white btn-primary btn-lg active"
+                        <button class="btn btn-dark text-white btn-primary btn-info active"
                                 data-toggle="modal" data-target="#SignIn"> Sign In </button>
-                        <button class="btn btn-dark text-white btn-lg" data-toggle="modal" data-target="#Register">
+                        <button class="btn btn-dark text-white btn-info" data-toggle="modal" data-target="#Register">
                             Sign up </button>
                     </div>
                 </div>
@@ -79,17 +90,17 @@
 
                     <!-- Text Fields for Sign in and Sign up -->
                     <div class="modal-body">
-                        <form method="POST">
+                        <form method="POST" action="">
                             <!-- Sign In Field -->
                             <div class="form-group">
                                 <label for="UsernameField">Username: </label>
-                                <input id="UsernameField" type="text" class="form-control" placeholder="Username">
+                                <input id="UsernameField" name="userLogin" type="text" class="form-control" placeholder="Username">
                             </div>
 
                             <!-- Password Field -->
                             <div class="form-group">
                                 <label for="PasswordField"> Password: </label>
-                                <input type="password" id="PasswordField" class="form-control" placeholder="Password">
+                                <input type="password" name="passwordLogin" id="PasswordField" class="form-control" placeholder="Password">
                             </div>
 
                             <button id="ProcessLogin" type="submit" name="processLogin"
@@ -147,7 +158,7 @@
 
 
         <!-- Footer -->
-        <footer class="page-footer black text-center" style="position: absolute; bottom: 0; width: 100%;">
+        <footer class="page-footer black text-center fixed-bottom">
             <div class="footer-copyright">
                 © Not Really Copyrighted
                 <a href="#"> CMPT350 Project</a>
