@@ -1,15 +1,3 @@
-<?php
-    require_once("./scripts/dbconfig.php");
-    session_start();
-    
-    if (isset($_POST['processLogin'])) {
-        
-        $username = $_POST['userLogin'];
-        $password = $_POST['passwordLogin'];
-              
-    }
-?>    
-
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -19,17 +7,17 @@
 
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
-        <!-- Bootstrap core CSS -->
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
         <!-- Material Design Bootstrap -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/css/mdb.min.css" rel="stylesheet">
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         
         <!-- JQuery -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <!-- Bootstrap tooltips -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"></script>
-        <!-- Bootstrap core JavaScript -->
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <!-- Popper -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <!-- Bootstrap -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/js/mdb.min.js"></script>
     </head>
@@ -77,7 +65,7 @@
                 </button>
             </div>
         </div>
-
+    
         <!-- Modal for popup sign in screen -->
         <div class="modal fade" id="SignIn" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -89,24 +77,31 @@
                     </div>
 
                     <!-- Text Fields for Sign in and Sign up -->
-                    <div class="modal-body">
-                        <form method="POST" action="">
+                    <div class="modal-body">                    
+                        <form method="POST" action="accountProcessing/login.php">
+                            
+                            <?php 
+                                if (isset($_GET['error'])) {
+                                    echo '<script src="js/loginErrors/invalidLogin.js"></script>';
+                                }
+                            ?>
+                            
                             <!-- Sign In Field -->
-                            <div class="form-group">
+                            <div id="loginUserGroup" class="form-group">
                                 <label for="UsernameField">Username: </label>
                                 <input id="UsernameField" name="userLogin" type="text" class="form-control" placeholder="Username">
                             </div>
 
                             <!-- Password Field -->
-                            <div class="form-group">
+                            <div id="passwordUserGroup" class="form-group">
                                 <label for="PasswordField"> Password: </label>
                                 <input type="password" name="passwordLogin" id="PasswordField" class="form-control" placeholder="Password">
                             </div>
 
-                            <button id="ProcessLogin" type="submit" name="processLogin"
-                                    class="btn btn-lg bg-dark text-white font-weight-bold"> Login </button>
-                        </form>
+                            <button id="ProcessLogin" type="submit" name="processLogin" class="btn btn-lg bg-dark text-white font-weight-bold"> Login </button>
+                        </form>                      
                     </div>
+                    
                     <!-- Footer -->
                     <div class="modal-footer">
                         <a href="#Register" data-toggle="modal" data-dismiss="modal">Not a Member?</a>
@@ -114,6 +109,8 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Modal for Register -->
         <div class="modal fade" id="Register" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
@@ -123,35 +120,41 @@
                         <h1 class="modal-title w-100 font-weight-bold"> Register </h1>
                         <button class="close" role="button" data-dismiss="modal"> X </button>
                     </div>
+                    
+                        <!-- Body -->
+                        <div class="modal-body">
+                            <form method="POST" action="accountProcessing/signup.php">
+                                <!-- Username Field -->
+                                <div class="form-group">
+                                    <label for="RUsernameField">Username: </label>
+                                    <input id="RUsernameField" class="form-control" name="rUsername" placeholder="Username">
+                                </div>
 
-                    <!-- Body -->
-                    <div class="modal-body">
-                        <!-- Username Field -->
-                        <div class="form-group">
-                            <label for="RUsernameField">Username: </label>
-                            <input id="RUsernameField" class="form-control" placeholder="Username">
-                        </div>
+                                <!-- Email Field -->
+                                <div class="form-group">
+                                    <label for="REmailField">Email: </label>
+                                    <input type="email" id="RUEmailField" class="form-control" name="rEmail" placeholder="Email">
+                                </div>
 
-                        <!-- Email Field -->
-                        <div class="form-group">
-                            <label for="REmailField">Email: </label>
-                            <input type="email" id="RUEmailField" class="form-control" placeholder="Email">
+                                <!-- Password Field -->
+                                <div class="form-group">
+                                    <label for="RPasswordField"> Password: </label>
+                                    <input type="password" id="RPasswordField" class="form-control" placeholder="Password" name="rPassword" >
+                                </div>   
+                                
+                                <!-- Confirm Password Field -->
+                                <div class="form-group">
+                                    <label for="RPasswordField"> Confirm Password </label>
+                                    <input type="password" id="RCPasswordField" class="form-control" placeholder="Confirm Password" name="rPassword" >
+                                </div>        
+                                 <button id="ProcessRegister" role="button" class="btn btn-lg bg-dark text-white font-weight-bold" type="submit" name="rSubmit"> Register </button>
+                            </form>
                         </div>
-
-                        <!-- Password Field -->
-                        <div class="form-group">
-                            <label for="RPasswordField"> Password: </label>
-                            <input type="password" id="RPasswordField" class="form-control" placeholder="Password">
-                        </div>
-                    </div>
 
                     <!-- Footer -->
                     <div class="modal-footer">
                         <a href="#SignIn" data-toggle="modal" data-dismiss="modal">Already Have an Account?</a>
-                    </div>
-
-                    <button id="ProcessRegister" role="button" class="btn btn-lg bg-dark text-white font-weight-bold"> Register </button>
-
+                    </div>               
                 </div>
             </div>
         </div>
