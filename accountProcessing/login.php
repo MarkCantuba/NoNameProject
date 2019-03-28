@@ -26,7 +26,7 @@ Login conditions:
 <?php 
     
     if (isset($_POST['processLogin'])) {
-        if (empty($_POST['userLogin']) || empty($_POST['passwordLogin'])) {
-            header("Location: ../index.php?error=EmptyFields");
-        }
+        if (empty($_POST['userLogin']) && empty($_POST['passwordLogin'])) {
+            header("Location: ../index.php?error=emptyPassword");
+        } 
     }
