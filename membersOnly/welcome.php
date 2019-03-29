@@ -32,6 +32,48 @@
     </head>
     
     <body>
-        <a href="../accountProcessing/logout.php"> Logout </a>
+        <!-- Navigation bar -->
+        <nav class="navbar navbar-dark bg-dark">
+            <div class="container-fluid">
+                <!-- Logo -->
+                <h3 class="navbar-text text-white text-we">
+                    <a class="navbar-brand" href="#" >
+                       <img src="../images/Logo.png" alt="CatFish" style="max-height: 45px; max-width: 45px;">
+                    </a>
+                    The Sketchy Web
+                </h3>
+
+                <!-- NavBar Buttons -->
+                <div>
+                <button class="btn btn-dark btn-info"> 
+                    <a class="text-white" href="../accountProcessing/logout.php"> Logout </a>
+                </button>
+                </div>
+            </div>
+       </nav>
+        
+        <hr>
+        
+        <table id="Dashboard" class="table table-bordered table-striped">
+            <thead class="thead-dark">
+                <tr class="text-center">
+                    <th class="font-weight-bold" scope="col"> # </th>
+                    <th class="font-weight-bold" scope="col"> Thread </th>
+                    <th class="font-weight-bold" scope="col"> Category   </th>
+                    <th class="font-weight-bold" scope="col"> Post Count </th>
+                    <th class="font-weight-bold" scope="col"> Created By </th>
+                    <th class="font-weight-bold" scope="col"> Created On </th>
+                </tr>
+            </thead>                      
+        </table>
+        
+        <!-- Footer -->
+        <footer class="page-footer black text-center fixed-bottom">
+            <div class="footer-copyright">
+                © Not Really Copyrighted
+                <a href="#"> CMPT350 Project</a>
+            </div>
+            
+        </footer>
     </body>
 </html>
