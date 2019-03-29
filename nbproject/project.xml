@@ -6,6 +6,7 @@
             <name>NoNameProject</name>
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
+            <word>rUsername</word>
             <word>UserI</word>
         </spellchecker-wordlist>
     </configuration>

@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    
+    if (isset($_SERVER['IsActive']) && $_SESSION[IsActive]) {
+        header('location: membersOnly/welcome.php');
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -82,7 +90,7 @@
                             
                             <?php 
                                 if (isset($_GET['error'])) {
-                                    echo '<script src="js/loginErrors/invalidLogin.js"></script>';
+                                    echo '<script src="js/invalidLogin.js"></script>';
                                 }
                             ?>
                             
@@ -124,28 +132,36 @@
                         <!-- Body -->
                         <div class="modal-body">
                             <form method="POST" action="accountProcessing/signup.php">
+                                
+                                <?php 
+                                    if (isset($_GET['error'])) {
+                                        echo '<script src="js/invalidFields.js"></script>';
+                                    }
+                                ?>                        
+                                
                                 <!-- Username Field -->
                                 <div class="form-group">
-                                    <label for="RUsernameField">Username: </label>
-                                    <input id="RUsernameField" class="form-control" name="rUsername" placeholder="Username">
+                                    <label for="RUsernameField"> Username: </label>
+                                    <input required="true" id="RUsernameField" class="form-control" name="rUsername" placeholder="Username">
                                 </div>
 
                                 <!-- Email Field -->
                                 <div class="form-group">
                                     <label for="REmailField">Email: </label>
-                                    <input type="email" id="RUEmailField" class="form-control" name="rEmail" placeholder="Email">
+                                    <input required="true" type="email" id="RUEmailField" class="form-control" name="rEmail" placeholder="Email">
                                 </div>
 
                                 <!-- Password Field -->
                                 <div class="form-group">
                                     <label for="RPasswordField"> Password: </label>
-                                    <input type="password" id="RPasswordField" class="form-control" placeholder="Password" name="rPassword" >
+                                    <input required="true" type="password" id="RPasswordField" class="form-control" placeholder="Password" name="rPassword" >
+                                    <span class="is-invalid">Must be at least 8 characters long</span>
                                 </div>   
                                 
                                 <!-- Confirm Password Field -->
-                                <div class="form-group">
-                                    <label for="RPasswordField"> Confirm Password </label>
-                                    <input type="password" id="RCPasswordField" class="form-control" placeholder="Confirm Password" name="rPassword" >
+                                <div id="confirmGroup" class="form-group">
+                                    <label for="RPasswordField"> Confirm Password: </label>
+                                    <input required="true" type="password" id="RCPasswordField" class="form-control" placeholder="Confirm Password" name="rCPassword" >
                                 </div>        
                                  <button id="ProcessRegister" role="button" class="btn btn-lg bg-dark text-white font-weight-bold" type="submit" name="rSubmit"> Register </button>
                             </form>
@@ -159,7 +175,42 @@
             </div>
         </div>
 
+        <div class="modal fade" id="NoSuchAccount" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <!-- Header -->
+                    <div class="modal-header text-center">
+                        <h1 class="modal-title w-100 font-weight-bold"> Error </h1>
+                        <button class="close" role="button" data-dismiss="modal"> X </button>
+                    </div>
+                    
+                    <div class="modal-body text-center">
+                        <p> Account does not exist! </p>
+                    </div>
 
+                    <button class="btn btn-lg bg-dark text-white font-weight-bold" role="button" data-dismiss="modal"> Okay </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal fade" id="RegisterResult" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <!-- Header -->
+                    <div class="modal-header text-center">
+                        <h1 class="modal-title w-100 font-weight-bold"> Register </h1>
+                        <button class="close" role="button" data-dismiss="modal"> X </button>
+                    </div>
+                    
+                    <div id="successMessage" class="modal-body text-center">
+                    </div>
+
+                    <button class="btn btn-lg bg-dark text-white font-weight-bold" role="button" data-dismiss="modal"> Okay </button>
+                </div>
+            </div>
+        </div>
+                    
+                    
         <!-- Footer -->
         <footer class="page-footer black text-center fixed-bottom">
             <div class="footer-copyright">
