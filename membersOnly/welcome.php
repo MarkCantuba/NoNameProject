@@ -4,14 +4,13 @@
         header("Location: ../index.php");
         exit();
     }
-    
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Login</title>
+        <title>Welcome <?php echo $_SESSION['Username']?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Font Awesome -->
@@ -29,6 +28,8 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/js/mdb.min.js"></script>
+    
+        <script type="text/javascript" src="../js/createCategory.js"></script>
     </head>
     
     <body>
@@ -51,29 +52,59 @@
                 </div>
             </div>
        </nav>
+
+        <button id="CreateCategory" class="btn btn-dark" data-toggle="modal" data-target="#CreateCategoryModal"> Add Category </button>
         
-        <hr>
-        
-        <table id="Dashboard" class="table table-bordered table-striped">
+        <table id="Dashboard" class="table table-bordered table-striped text-center">
             <thead class="thead-dark">
-                <tr class="text-center">
+                <tr>
                     <th class="font-weight-bold" scope="col"> # </th>
-                    <th class="font-weight-bold" scope="col"> Thread </th>
-                    <th class="font-weight-bold" scope="col"> Category   </th>
-                    <th class="font-weight-bold" scope="col"> Post Count </th>
-                    <th class="font-weight-bold" scope="col"> Created By </th>
-                    <th class="font-weight-bold" scope="col"> Created On </th>
+                    <th class="font-weight-bold" scope="col"> Categories </th>
+                    <th class="font-weight-bold" scope="col"> Description </th>
                 </tr>
-            </thead>                      
+            </thead>                                 
+            <tbody  id="categoryTableBody">
+                <?php 
+                    require_once '../loadData/getCategories.php';
+                ?>
+            </tbody>
         </table>
         
+        <div class="modal fade" id="CreateCategoryModal" role="dialog" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header text-center"> 
+                        <h3 class="font-weight-bold w-100"> Add Category </h3>
+                        <button class="close" role="button" data-dismiss="modal"> X </button>
+                    </div> 
+                    
+                    <div class="modal-body">    
+                        <form method="POST" action="../loadData/getCreate.php">
+                            <div class="form-group"> 
+                                <label> Category Name: </label>
+                                <input required="true" id="Categoryname" class="form-control" name="CategoryName" placeholder="Category Name">
+                            </div>
+                            
+                            <div class="form-group"> 
+                                <label> Category Description: </label>
+                                <input required="true" id="Description" class="form-control" name="Description" placeholder="Enter Category Description">
+                            </div>
+                            <button id="CreateCategory" role="button" class="btn btn-lg bg-dark text-white font-weight-bold" type="submit" name="createCategory"> Create </button>
+                            
+                        </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+                
+         
         <!-- Footer -->
         <footer class="page-footer black text-center fixed-bottom">
             <div class="footer-copyright">
                 © Not Really Copyrighted
                 <a href="#"> CMPT350 Project</a>
             </div>
-            
         </footer>
     </body>
 </html>

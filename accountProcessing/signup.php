@@ -28,7 +28,7 @@ Variables:
         else {
             $salt = uniqid(mt_rand(), true);
             $salted_password = $salt.$password.$salt;
-            $hashed = hash('sha256', $salt."potato".$salt);
+            $hashed = hash('sha256', $salted_password);
 
             $query = "INSERT INTO Users (Username, Email, Password, Salt)"
                     . "VALUES (?,?,?,?);";

@@ -12,3 +12,7 @@
     }
 
             
+    function convertToTable($id, $name, $description) {
+        return "<tr><th class=\"font-weight-bold\">".$id."</th><th>".$name."</th><th>".$description."</th></tr>";
+    }
+    
