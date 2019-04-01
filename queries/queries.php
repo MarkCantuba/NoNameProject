@@ -41,14 +41,14 @@
         $statement -> execute();
     }
     
-    function getThreadsFromCategory($categoryId, $conn) {
-        $query = "SELECT * FROM Thread WHERE Category Like ?;";
+    function getThreadsFromCategory($categoryName, $conn) {
+        $query = "SELECT * FROM Thread WHERE Category = ?;";
+        $categoryId = getCategoryID($categoryName, $conn);
         
         $statement = $conn -> prepare($query);
-        $statement -> bind_param("s", $categoryId);
+        $statement -> bind_param("i", $categoryId);
         
-        $statement -> execute();
-        
+        $statement -> execute(); 
         $statement -> store_result();
         
         return $statement;
@@ -59,6 +59,22 @@
         
         $statement = $conn -> prepare($query);
         $statement -> bind_param("s", $threadName);
+        
+        $statement -> execute();
+        
+        $statement -> store_result();
+        
+        $statement -> bind_result($id);
+        $statement -> fetch();
+        
+        return $id;
+    }
+    
+    function getCategoryID($categoryName, $conn) {
+        $query = "SELECT CategoryID FROM Category WHERE categoryName LIKE ?;";
+        
+        $statement = $conn -> prepare($query);
+        $statement -> bind_param("s", $categoryName);
         
         $statement -> execute();
         

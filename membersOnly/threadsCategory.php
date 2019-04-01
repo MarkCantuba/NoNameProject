@@ -52,6 +52,10 @@
             </div>
        </nav>
         
+        <div class="container-fluid text-center font-weight-bold">
+            <h1> <?php echo $_GET['category'] ?> </h1>
+        </div>
+        
         <button id="CreateCategory" class="btn btn-dark"> Create New Thread </button>
         
         <div id="threadArea" class="container-fluid">
