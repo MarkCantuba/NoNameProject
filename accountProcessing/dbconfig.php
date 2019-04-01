@@ -10,9 +10,3 @@
     if ($conn->connect_error) {
         die("Connection failed: " . $conn->connect_error);
     }
-
-            
-    function convertToTable($id, $name, $description) {
-        return "<tr><th class=\"font-weight-bold\">".$id."</th><th>".$name."</th><th>".$description."</th></tr>";
-    }
-    

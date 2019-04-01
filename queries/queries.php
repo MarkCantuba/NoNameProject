@@ -41,6 +41,19 @@
         $statement -> execute();
     }
     
+    function getThreadsFromCategory($categoryId, $conn) {
+        $query = "SELECT * FROM Thread WHERE Category Like ?;";
+        
+        $statement = $conn -> prepare($query);
+        $statement -> bind_param("s", $categoryId);
+        
+        $statement -> execute();
+        
+        $statement -> store_result();
+        
+        return $statement;
+    }
+    
     function getThreadID($threadName, $conn) {
         $query = "SELECT ThreadID FROM Thread WHERE ThreadName LIKE ?;";
         

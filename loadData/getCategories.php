@@ -7,5 +7,13 @@
     $result = mysqli_query($conn, $query);
     
     while ($row = mysqli_fetch_array($result)) {
-        echo convertToTable($row['CategoryID'], $row['CategoryName'], $row['Description']);
+        echo convertToCategoryTable($row['CategoryID'], $row['CategoryName'], $row['Description']);
     }
+
+                
+    function convertToCategoryTable($id, $name, $description) {
+        return "<tr><th class=\"font-weight-bold\">".$id."</th><th><a "
+                . "href=\"../membersOnly/threadsCategory.php?category=".$name
+                ."\">".$name."</a></th><th>".$description."</th></tr>";
+    }
+    
