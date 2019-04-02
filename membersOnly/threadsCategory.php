@@ -1,16 +1,16 @@
 <?php
-    session_start(); 
-    if (!isset($_SESSION['IsActive']) || !$_SESSION['IsActive']) {
-        header("Location: ../index.php");
-        exit();
-    }
+session_start();
+if (!isset($_SESSION['IsActive']) || !$_SESSION['IsActive']) {
+    header("Location: ../index.php");
+    exit();
+}
 ?>
 
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Welcome <?php echo $_SESSION['Username']?></title>
+        <title>Welcome <?php echo $_SESSION['Username'] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Font Awesome -->
@@ -19,7 +19,7 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/css/mdb.min.css" rel="stylesheet">
         <!-- Bootstrap -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-        
+
         <!-- JQuery -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <!-- Popper -->
@@ -29,39 +29,30 @@
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/js/mdb.min.js"></script>
 
+        <script type="text/javascript" src="../js/showComments.js"></script>
     </head>
-    
-    <body>
-        <!-- Navigation bar -->
-        <nav class="navbar navbar-dark bg-dark">
-            <div class="container-fluid">
-                <!-- Logo -->
-                <h3 class="navbar-text text-white text-we">
-                    <a class="navbar-brand" href="#" >
-                       <img src="../images/Logo.png" alt="CatFish" style="max-height: 45px; max-width: 45px;">
-                    </a>
-                    The Sketchy Web
-                </h3>
 
-                <!-- NavBar Buttons -->
-                <div>
-                <button class="btn btn-dark btn-info"> 
-                    <a class="text-white" href="../accountProcessing/logout.php"> Logout </a>
-                </button>
-                </div>
-            </div>
-       </nav>
-        
+    <body class="d-flex flex-column">
+        <!-- Header -->
+        <?php require './headerFooter/Header.php'; ?>
+
+        <button id="CreateThread" class="btn btn-dark" data data-toggle="modal" data-target="#CreateThreadModal"> Create New Thread </button>
+
         <div class="container-fluid text-center font-weight-bold">
-            <h1> <?php echo $_GET['category'] ?> </h1>
+            <h1 class="font-weight-bold"> <?php echo $_GET['category'] ?> </h1>
         </div>
-        
-        <button id="CreateCategory" class="btn btn-dark"> Create New Thread </button>
-        
+
+
         <div id="threadArea" class="container-fluid">
             <?php include '../loadData/getThreads.php'; ?>
         </div>
-        
+
+        <!-- Footer -->
+        <?php
+        require './Modals/CreateThread.php';
+        require './Modals/CommentModal.php';
+        ?>
+
     </body>
-    
+
 </html>
