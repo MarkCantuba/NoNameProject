@@ -54,6 +54,19 @@ function getThreadsFromCategory($categoryName, $conn) {
     return $statement;
 }
 
+function getThreadComments($threadName, $conn) {
+    $query = "SELECT PostContent, CreatedOn, Rating, PostedBy FROM Post WHERE ThreadID = ?";
+
+    $statement = $conn->prepare($query);
+    $threadID = getThreadID($threadName, $conn);
+    $statement -> bind_param("i", $threadID);
+
+    $statement -> execute();
+    $statement -> store_result();
+
+    return $statement;
+}
+
 function getThreadID($threadName, $conn) {
     $query = "SELECT ThreadID FROM Thread WHERE ThreadName LIKE ?;";
 

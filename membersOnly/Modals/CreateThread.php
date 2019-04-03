@@ -1,9 +1,9 @@
 <div class="modal fade" id="CreateThreadModal" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="modal-header text-center">
-                <h3 class="font-weight-bold w-100"> Create a New Thread </h3>
-                <button class="close" role="button" data-dismiss="modal"> X </button>
+            <div class="modal-header text-center bg-dark">
+                <h3 class="font-weight-bold w-100 text-white"> Create a New Thread </h3>
+                <button class="close text-white" role="button" data-dismiss="modal"> X </button>
             </div>
 
             <div class="modal-body">

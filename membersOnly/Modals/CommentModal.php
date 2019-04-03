@@ -1,9 +1,14 @@
 <div class="modal fade" id="CommentModal" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
-            <div class="modal-header text-center">
-                <h3 class="font-weight-bold w-100"> Comments </h3>
-                <button class="close" role="button" data-dismiss="modal"> X </button>
+            <div class="modal-header text-center bg-dark text-white">
+                <h3 class="font-weight-bold w-100">
+                    <?php
+                    if (isset($_GET['threadName'])) {
+                        echo $_GET['threadName'];
+                    }
+                    ?> </h3>
+                <button class="close text-white" role="button" data-dismiss="modal"> X </button>
             </div>
 
             <div class="modal-body">
