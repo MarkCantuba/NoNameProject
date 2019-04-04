@@ -49,6 +49,8 @@
 
             <!-- Footer -->
             <div class="modal-footer">
+                <fb:login-button scope="public_profile,email" onlogin="checkLoginState();"> Register through Facebook </fb:login-button>
+                <br>
                 <a href="#SignIn" data-toggle="modal" data-dismiss="modal">Already Have an Account?</a>
             </div>
         </div>

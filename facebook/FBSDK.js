@@ -21,3 +21,10 @@
    FB.getLoginStatus(function(response) {
     statusChangeCallback(response);
 });
+
+function checkLoginState() {
+  return FB.getLoginStatus(function(response) {
+    statusChangeCallback(response);
+  });
+}
+
