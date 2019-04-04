@@ -32,7 +32,7 @@ if (!isset($_SESSION['IsActive']) || !$_SESSION['IsActive']) {
     </head>
 
     <body class="d-flex flex-column">
-        <?php require './headerFooter/Header.php'; ?>
+        <?php require '../headerFooter/Header.php'; ?>
 
         <button id="CreateCategory" class="btn btn-dark" data-toggle="modal" data-target="#CreateCategoryModal"> Add Category </button>
 
@@ -52,7 +52,7 @@ if (!isset($_SESSION['IsActive']) || !$_SESSION['IsActive']) {
         </table>
 
         <?php
-        require './Modals/CreateCategory.php';
+        require '../modals/CreateCategory.php';
         ?>
     </body>
 </html>

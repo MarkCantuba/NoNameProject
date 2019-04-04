@@ -28,6 +28,8 @@ if (isset($_SERVER['IsActive']) && $_SESSION[IsActive]) {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/js/mdb.min.js"></script>
+
+        <script type="text/javascript" src="facebook/FBSDK.js"></script>
     </head>
 
     <body class="d-flex flex-column">
@@ -73,150 +75,12 @@ if (isset($_SERVER['IsActive']) && $_SESSION[IsActive]) {
             </div>
         </div>
 
-        <!-- Modal for popup sign in screen -->
-        <div class="modal fade" id="SignIn" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <!-- SignIn Header and Close button -->
-                    <div class="modal-header text-center">
-                        <h1 class="modal-title w-100 font-weight-bold"> Sign In </h1>
-                        <button class="close" role="button" data-dismiss="modal">X</button>
-                    </div>
-
-                    <!-- Text Fields for Sign in and Sign up -->
-                    <div class="modal-body">
-                        <form method="POST" action="accountProcessing/login.php">
-
-                            <?php
-                            if (isset($_GET['error'])) {
-                                echo '<script src="js/invalidLogin.js"></script>';
-                            }
-                            ?>
-
-                            <!-- Sign In Field -->
-                            <div id="loginUserGroup" class="form-group">
-                                <label for="UsernameField">Username: </label>
-                                <input id="UsernameField" name="userLogin" type="text" class="form-control" placeholder="Username">
-                            </div>
-
-                            <!-- Password Field -->
-                            <div id="passwordUserGroup" class="form-group">
-                                <label for="PasswordField"> Password: </label>
-                                <input type="password" name="passwordLogin" id="PasswordField" class="form-control" placeholder="Password">
-                            </div>
-
-                            <button id="ProcessLogin" type="submit" name="processLogin" class="btn btn-lg bg-dark text-white font-weight-bold"> Login </button>
-                        </form>
-                    </div>
-
-                    <!-- Footer -->
-                    <div class="modal-footer">
-                        <a href="#Register" data-toggle="modal" data-dismiss="modal">Not a Member?</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Modal for Register -->
-        <div class="modal fade" id="Register" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-
-                    <!-- Header -->
-                    <div class="modal-header text-center">
-                        <h1 class="modal-title w-100 font-weight-bold"> Register </h1>
-                        <button class="close" role="button" data-dismiss="modal"> X </button>
-                    </div>
-
-                    <!-- Body -->
-                    <div class="modal-body">
-                        <form method="POST" action="accountProcessing/signup.php">
-
-                            <?php
-                            if (isset($_GET['error'])) {
-                                echo '<script src="js/invalidFields.js"></script>';
-                            }
-                            ?>
-
-                            <!-- Username Field -->
-                            <div class="form-group">
-                                <label for="RUsernameField"> Username: </label>
-                                <input required="true" id="RUsernameField" class="form-control" name="rUsername" placeholder="Username">
-                            </div>
-
-                            <!-- Email Field -->
-                            <div class="form-group">
-                                <label for="REmailField">Email: </label>
-                                <input required="true" type="email" id="RUEmailField" class="form-control" name="rEmail" placeholder="Email">
-                            </div>
-
-                            <!-- Password Field -->
-                            <div class="form-group">
-                                <label for="RPasswordField"> Password: </label>
-                                <input required="true" type="password" id="RPasswordField" class="form-control" placeholder="Password" name="rPassword" >
-                                <span class="is-invalid">Must be at least 8 characters long</span>
-                            </div>
-
-                            <!-- Confirm Password Field -->
-                            <div id="confirmGroup" class="form-group">
-                                <label for="RPasswordField"> Confirm Password: </label>
-                                <input required="true" type="password" id="RCPasswordField" class="form-control" placeholder="Confirm Password" name="rCPassword" >
-                            </div>
-                            <button id="ProcessRegister" role="button" class="btn btn-lg bg-dark text-white font-weight-bold" type="submit" name="rSubmit"> Register </button>
-                        </form>
-                    </div>
-
-                    <!-- Footer -->
-                    <div class="modal-footer">
-                        <a href="#SignIn" data-toggle="modal" data-dismiss="modal">Already Have an Account?</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="NoSuchAccount" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <!-- Header -->
-                    <div class="modal-header text-center">
-                        <h1 class="modal-title w-100 font-weight-bold"> Error </h1>
-                        <button class="close" role="button" data-dismiss="modal"> X </button>
-                    </div>
-
-                    <div class="modal-body text-center">
-                        <p> Account does not exist! </p>
-                    </div>
-
-                    <button class="btn btn-lg bg-dark text-white font-weight-bold" role="button" data-dismiss="modal"> Okay </button>
-                </div>
-            </div>
-        </div>
-
-        <div class="modal fade" id="RegisterResult" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <!-- Header -->
-                    <div class="modal-header text-center">
-                        <h1 class="modal-title w-100 font-weight-bold"> Register </h1>
-                        <button class="close" role="button" data-dismiss="modal"> X </button>
-                    </div>
-
-                    <div id="successMessage" class="modal-body text-center">
-                    </div>
-
-                    <button class="btn btn-lg bg-dark text-white font-weight-bold" role="button" data-dismiss="modal"> Okay </button>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Footer -->
-        <footer class="page-footer black text-center fixed-bottom">
-            <div class="footer-copyright">
-                © Not Really Copyrighted
-                <a href="#"> CMPT350 Project</a>
-            </div>
-        </footer>
+        <?php
+        require_once './modals/LoginModal.php';
+        require_once './modals/RegisterModal.php';
+        require_once './modals/NoSuchAccountModal.php';
+        require_once './headerFooter/Footer.php';
+        ?>
 
     </body>
 </html>

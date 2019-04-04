@@ -1,6 +1,5 @@
 <?php
 
-//
 require_once '../queries/queries.php';
 require_once '../accountProcessing/dbconfig.php';
 
@@ -11,15 +10,15 @@ if (isset($_GET['threadName'])) {
 
 
     while ($statement->fetch()) {
-        $poster = getUsernameFromId($postedBy, $conn);
+        $poster = getUsernameFromId($PostedBy, $conn);
+
+        $image = "\"https://api.adorable.io/avatars/40/".$PostedBy."@adorable.png\"";
         echo
-        "<div class=\"media\">"
-        . "<img rel=\"prefetch\" class=\"mr-3\" src=\"http://lorempixel.com/50/50/animals\"/ style=\"border-radius: 50%;\">"
+        "<li class=\"media\">"
+        . "<img rel=\"prefetch\" class=\"mr-3\" src=".$image."style=\"border-radius: 50%;\">"
         . " <div class=\"media-body\""
         . "         <h2> <strong>".$poster."</strong> </h2>"
         . "         <p>".$PostContent."</p>"
-        . " </div>"
-        . ""
-        . "</div>";
+        . "</li>";
     }
 }

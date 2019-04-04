@@ -34,7 +34,7 @@ if (!isset($_SESSION['IsActive']) || !$_SESSION['IsActive']) {
 
     <body class="d-flex flex-column">
         <!-- Header -->
-        <?php require './headerFooter/Header.php'; ?>
+        <?php require '../headerFooter/Header.php'; ?>
 
         <button id="CreateThread" class="btn btn-dark" data data-toggle="modal" data-target="#CreateThreadModal"> Create New Thread </button>
 
@@ -49,8 +49,8 @@ if (!isset($_SESSION['IsActive']) || !$_SESSION['IsActive']) {
 
         <!-- Footer -->
         <?php
-        require './Modals/CreateThread.php';
-        require './Modals/CommentModal.php';
+        require '../modals/CreateThread.php';
+        require '../modals/CommentModal.php';
         ?>
 
     </body>
