@@ -10,7 +10,7 @@ if (isset($_SERVER['IsActive']) && $_SESSION[IsActive]) {
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>Login</title>
+        <title><?php $_SERVER["REQUEST_URI"] ?></title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Font Awesome -->
