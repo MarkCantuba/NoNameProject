@@ -12,7 +12,7 @@ while ($statement->fetch()) {
 }
 
 function convertToThreadBox($threadId, $threadName, $postCount, $createdOn, $postedBy, $conn) {
-    $link = "\"http://localhost:8080/membersOnly/threadsCategory.php?category=".$_GET['category']."&threadName=".$threadName."\"";
+    $link = "\"../membersOnly/threadsCategory.php?category=".$_GET['category']."&threadName=".$threadName."\"";
     $htmlString = "<div class=\"card text-center\">"
             . " <h4 class=\"card-header\"><a href=".$link.">".$threadName."</a></h3>"
             . " <div class=\"card-body\"> "
