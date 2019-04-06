@@ -4,6 +4,7 @@ session_start();
 if (isset($_SERVER['IsActive']) && $_SESSION[IsActive]) {
     header('location: membersOnly/welcome.php');
 }
+
 ?>
 
 <!DOCTYPE html>

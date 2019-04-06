@@ -39,4 +39,12 @@ START TRANSACTION;
         FOREIGN KEY 	(PostedBy) REFERENCES finalproject.users(UserID)	
     );
     
+    CREATE TABLE finalproject.threadSubscribers (
+		ThreadID		INTEGER,
+		UserID			INTEGER,
+        PhoneNumber		INTEGER NOT NULL,
+        PRIMARY KEY (ThreadID, UserID),
+        CHECK (LENGTH(PhoneNumber) = 11)
+    );
+    
 COMMIT;

@@ -1,0 +1,14 @@
+{
+    "name": "vendor/no-name-project",
+    "description": "Description of project NoNameProject.",
+    "license":"MIT",
+    "authors": [
+        {
+            "name": "Mark",
+            "email": "tutz0397@yahoo.com"
+        }
+    ],
+    "require": {
+        "twilio/sdk":"5.31.0"
+    }
+}
