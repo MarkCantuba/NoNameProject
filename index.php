@@ -32,9 +32,8 @@ if (isset($_SERVER['IsActive']) && $_SESSION[IsActive]) {
         <script type="text/javascript" src="facebook/FBSDK.js"></script>
     </head>
 
+
     <body class="d-flex flex-column">
-        <!-- Container -->
-        <div class="container-fluid">
 
             <!-- Navigation bar -->
             <nav class="navbar navbar-dark bg-dark">
@@ -72,7 +71,7 @@ if (isset($_SERVER['IsActive']) && $_SESSION[IsActive]) {
                         data-toggle="modal" data-target="#SignIn">
                     Sign In
                 </button>
-            </div>
+
         </div>
 
         <?php

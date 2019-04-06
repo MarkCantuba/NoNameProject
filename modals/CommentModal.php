@@ -1,5 +1,5 @@
 <div class="modal fade" id="CommentModal" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="overflow-y: initial !important;">
         <div class="modal-content">
             <div class="modal-header text-center bg-dark text-white">
                 <h3 class="font-weight-bold w-100">
@@ -11,12 +11,12 @@
                 <button class="close text-white" role="button" data-dismiss="modal"> X </button>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body" style="height: 250px; overflow-y: auto;">
                 <?php require '../loadData/getComments.php'; ?>
             </div>
 
             <div class="modal-body">
-                <form method="POST">
+                <form method="POST" action="../loadData/postComment.php?category=<?php echo $_GET['category'] ?>&threadName=<?php if (isset($_GET['threadName'])) {echo $_GET['threadName'];}?>">
                     <div class="form-group text-center">
                         <textarea  required class="form-control" rows="2" name="postComment" placeholder="Enter Comment..." style="resize: none;"></textarea>
                     </div>

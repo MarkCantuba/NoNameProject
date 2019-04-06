@@ -17,6 +17,8 @@ function addPost($postContent, $threadId, $postedBy, $conn) {
     $statement->bind_param("sii", $postContent, $threadId, $postedBy);
 
     $statement->execute();
+
+    incrementPostCount($threadId, $conn);
 }
 
 function addThread($threadName, $category, $postedBy, $postContent, $conn) {
@@ -29,7 +31,16 @@ function addThread($threadName, $category, $postedBy, $postContent, $conn) {
     $id = getThreadID($threadName, $conn);
 
     addPost($postContent, $id, $postedBy, $conn);
-    incrementPostCount($id, $conn);
+}
+
+function addComment($postContent, $threadId, $postedBy) {
+    $query = "INSERT INTO Post (PostContent, ThreadID, PostedBy) VALUES (?,?,?);";
+    $statement = $conn->prepare($query);
+    $statement->bind_param("sii", $postContent, $threadId, $postedBy);
+
+    $statement->execute();
+
+    incrementPostCount($threadID, $conn);
 }
 
 function incrementPostCount($threadID, $conn, $incrementBy = 1) {
@@ -59,10 +70,10 @@ function getThreadComments($threadName, $conn) {
 
     $statement = $conn->prepare($query);
     $threadID = getThreadID($threadName, $conn);
-    $statement -> bind_param("i", $threadID);
+    $statement->bind_param("i", $threadID);
 
-    $statement -> execute();
-    $statement -> store_result();
+    $statement->execute();
+    $statement->store_result();
 
     return $statement;
 }
