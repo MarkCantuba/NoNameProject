@@ -3,7 +3,7 @@
     <div class="container-fluid">
         <!-- Logo -->
         <h3 class="navbar-text text-white text-we">
-            <a class="navbar-brand" href="welcome.php" >
+            <a class="navbar-brand" href="categoryPage.php">
                 <img rel="prefetch" src="../images/Logo.png" alt="CatFish" style="max-height: 45px; max-width: 45px;">
             </a>
             The Sketchy Web

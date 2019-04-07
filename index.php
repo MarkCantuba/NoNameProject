@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-if (isset($_SERVER['IsActive']) && $_SESSION[IsActive]) {
-    header('location: membersOnly/welcome.php');
+if (isset($_SESSION['IsActive']) && $_SESSION['IsActive']) {
+    header('location: membersOnly/categoryPage.php');
 }
 
 ?>
@@ -11,7 +11,7 @@ if (isset($_SERVER['IsActive']) && $_SESSION[IsActive]) {
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title><?php $_SERVER["REQUEST_URI"] ?></title>
+        <title> Login </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <!-- Font Awesome -->
@@ -29,8 +29,6 @@ if (isset($_SERVER['IsActive']) && $_SESSION[IsActive]) {
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/js/mdb.min.js"></script>
-
-        <script type="text/javascript" src="facebook/FBSDK.js"></script>
     </head>
 
 

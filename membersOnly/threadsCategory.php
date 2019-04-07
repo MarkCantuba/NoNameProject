@@ -47,10 +47,13 @@ if (!isset($_SESSION['IsActive']) || !$_SESSION['IsActive']) {
             <?php include '../loadData/getThreads.php'; ?>
         </div>
 
-        <!-- Footer -->
+        <!-- Modals -->
         <?php
         require '../modals/CreateThread.php';
         require '../modals/CommentModal.php';
+        require '../modals/Subscribe.php';
+        require '../modals/Unsubscribe.php';
+        require '../modals/Success.php';
         ?>
 
     </body>

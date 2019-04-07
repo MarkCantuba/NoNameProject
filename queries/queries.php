@@ -125,3 +125,62 @@ function getUserID($name, $conn) {
 
     return $id;
 }
+
+function isSubscribeToThread($userID, $threadID, $conn) {
+    $query = "SELECT PhoneNumber FROM threadSubscribers WHERE UserID = ? AND ThreadID = ?;";
+
+    $statement = $conn -> prepare($query);
+    $statement -> bind_param("ii", $userID, $threadID);
+
+    $statement -> execute();
+
+    $statement -> store_result();
+
+    if ($statement -> num_rows == 0) {
+        return false;
+    } else {
+        $statement -> bind_result($phoneNumber);
+        $statement -> fetch();
+        return $phoneNumber;
+    }
+}
+function getUsernameFromId($userId, $conn) {
+    $query = "SELECT Username FROM Users WHERE userID = ?;";
+
+    $statement = $conn->prepare($query);
+    $statement->bind_param("i", $userId);
+
+    $statement->execute();
+
+    $statement->store_result();
+
+    $statement->bind_result($id);
+    $statement->fetch();
+
+    return $id;
+}
+
+function unsubscribeFromThread($threadID, $userId, $conn) {
+    $query = "DELETE FROM threadSubscribers WHERE ThreadID = ? AND UserID = ?;";
+
+    $statement = $conn -> prepare($query);
+    $statement->bind_param("ii", $threadID, $userId);
+
+    $statement -> execute();
+}
+
+function subscribeToThread($threadID, $userId, $phoneNumber, $conn) {
+    if (strlen($phoneNumber) != 12) {
+        return false;
+    }
+    
+    $query = "INSERT INTO threadSubscribers (ThreadID, UserID, PhoneNumber) VALUES (?,?,?);";
+
+    $statement = $conn -> prepare($query);
+    $statement->bind_param("iis", $threadID, $userId, $phoneNumber);
+
+
+    $statement -> execute();
+
+    return true;
+}

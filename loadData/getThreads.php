@@ -13,12 +13,28 @@ while ($statement->fetch()) {
 
 function convertToThreadBox($threadId, $threadName, $postCount, $createdOn, $postedBy, $conn) {
     $link = "\"../membersOnly/threadsCategory.php?category=".$_GET['category']."&threadName=".$threadName."\"";
+    $subscribed;
+
+    $userID = getUserID($_SESSION['Username'], $conn);
+
+
+
+    if (isSubscribeToThread($userID, $threadId, $conn) == false) {
+        $subLink = "\"../membersOnly/threadsCategory.php?category=".$_GET['category']."&thread=".$threadName."\"";
+        $subscribed = "<br> <a href=".$subLink."> Subscribe </a>";
+    } else {
+        $unsubLink = "\"../membersOnly/threadsCategory.php?category=".$_GET['category']."&threadUnsub=".$threadName."\"";
+
+        $subscribed = "<br> <a href=".$unsubLink."> Unsubscribe </a>";
+    }
+
     $htmlString = "<div class=\"card text-center\">"
             . " <h4 class=\"card-header\"><a href=".$link.">".$threadName."</a></h3>"
             . " <div class=\"card-body\"> "
             . "   Post Count: " . $postCount
             . "<br> Posted By: " . getUsernameFromId($postedBy, $conn)
             . "<br> Thread Id: " . $threadId
+            . $subscribed
             . " </div>"
             . " <div class=\"card-footer text-muted\">"
             . "Created on: " . $createdOn
@@ -26,20 +42,4 @@ function convertToThreadBox($threadId, $threadName, $postCount, $createdOn, $pos
             . "</div>";
 
     return $htmlString;
-}
-
-function getUsernameFromId($userId, $conn) {
-    $query = "SELECT Username FROM Users WHERE userID = ?;";
-
-    $statement = $conn->prepare($query);
-    $statement->bind_param("i", $userId);
-
-    $statement->execute();
-
-    $statement->store_result();
-
-    $statement->bind_result($id);
-    $statement->fetch();
-
-    return $id;
 }

@@ -73,7 +73,7 @@ if (isset($_POST['processLogin'])) {
                     $_SESSION['Username'] = $user;
                     $_SESSION['IsActive'] = TRUE;
 
-                    header("Location: ../membersOnly/welcome.php");
+                    header("Location: ../membersOnly/categoryPage.php");
                 } else {
                     header("Location: ../index.php?error=wrongPassword&Username=" . $Username);
                     exit();

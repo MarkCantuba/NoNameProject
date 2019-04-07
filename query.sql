@@ -42,9 +42,8 @@ START TRANSACTION;
     CREATE TABLE finalproject.threadSubscribers (
 		ThreadID		INTEGER,
 		UserID			INTEGER,
-        PhoneNumber		INTEGER NOT NULL,
-        PRIMARY KEY (ThreadID, UserID),
-        CHECK (LENGTH(PhoneNumber) = 11)
+        PhoneNumber		VARCHAR(12) NOT NULL,
+        PRIMARY KEY (ThreadID, UserID)
     );
     
 COMMIT;

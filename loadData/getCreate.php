@@ -8,7 +8,7 @@ if (isset($_POST['createCategory'])) {
     addCategory($_POST['CategoryName'], $_POST['Description'], $conn);
 }
 
-header("location: ../membersOnly/welcome.php");
+header("location: ../membersOnly/categoryPage.php");
 
 
 
