@@ -11,7 +11,7 @@ while ($row = mysqli_fetch_array($result)) {
 }
 
 function convertToCategoryTable($id, $name, $description) {
-    return "<tr><th class=\"font-weight-bold\">" . $id . "</th><th><a "
+    return "<tr id=\"".str_replace(' ', '', $name)."\"><th class=\"font-weight-bold\">" . $id . "</th><th><a "
             . "href=\"../membersOnly/threadsCategory.php?category=" . $name
             . "\">" . $name . "</a></th><th>" . $description . "</th></tr>";
 }

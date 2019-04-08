@@ -27,8 +27,7 @@ function convertToThreadBox($threadId, $threadName, $postCount, $createdOn, $pos
 
         $subscribed = "<br> <a href=".$unsubLink."> Unsubscribe </a>";
     }
-
-    $htmlString = "<div class=\"card text-center\">"
+    $htmlString = "<div class=\"card text-center\" id=\"".str_replace(' ', '', $threadName)."\">"
             . " <h4 class=\"card-header\"><a href=".$link.">".$threadName."</a></h3>"
             . " <div class=\"card-body\"> "
             . "   Post Count: " . $postCount

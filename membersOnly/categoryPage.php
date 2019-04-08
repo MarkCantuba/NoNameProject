@@ -29,10 +29,13 @@ if (!isset($_SESSION['IsActive']) || !$_SESSION['IsActive']) {
         <!-- MDB core JavaScript -->
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.7.5/js/mdb.min.js"></script>
 
+        <script type="text/javascript" src="../js/filterSearchCategory.js"></script>
+
     </head>
 
     <body class="d-flex flex-column">
         <?php require '../headerFooter/Header.php'; ?>
+        <input id="categorySearch" class="form-control text-center" type="text" placeholder="Search Category" aria-label="Search Category">
 
         <button id="CreateCategory" class="btn btn-dark" data-toggle="modal" data-target="#CreateCategoryModal"> Add Category </button>
 
