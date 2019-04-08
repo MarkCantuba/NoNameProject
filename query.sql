@@ -32,11 +32,11 @@ START TRANSACTION;
 		PostID			INTEGER	PRIMARY KEY AUTO_INCREMENT,
         PostContent		TEXT    NOT NULL,
         ThreadID		INTEGER NOT NULL,
-        FOREIGN KEY 	(ThreadID) REFERENCES finalproject.thread(ThreadID),
+        FOREIGN KEY 	(ThreadID) REFERENCES finalproject.thread(ThreadID) ON DELETE CASCADE,
         CreatedOn		TIMESTAMP DEFAULT now(),
         Rating			INTEGER DEFAULT 0,
         PostedBy		INTEGER NOT NULL,
-        FOREIGN KEY 	(PostedBy) REFERENCES finalproject.users(UserID)	
+        FOREIGN KEY 	(PostedBy) REFERENCES finalproject.users(UserID)
     );
     
     CREATE TABLE finalproject.threadSubscribers (

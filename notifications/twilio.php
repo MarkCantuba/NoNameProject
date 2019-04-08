@@ -4,8 +4,6 @@ require '../vendor/autoload.php';
 
 use Twilio\Rest\Client;
 
-$to = "a";
-
 function sendSms($to, $message) {
     $accountSid = getenv('TWILIO_SID');
     $authToken = getenv('TWILIO_AUTH');
@@ -23,4 +21,21 @@ function sendSms($to, $message) {
     } catch (TwilioException $e) {
         echo $e;
     }
+}
+
+function validatePhoneNumber($phoneNumber, $name) {
+
+    $accountSid = getenv('TWILIO_SID');
+    $authToken = getenv('TWILIO_AUTH');
+
+    $twilio = new Client($accountSid, $authToken);
+
+    $validation_request = $twilio->validationRequests
+            ->create($phoneNumber, // phoneNumber
+            array(
+        "friendlyName" => $name
+            )
+    );
+
+    echo $validation_request->friendlyName;
 }

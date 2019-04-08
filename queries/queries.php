@@ -173,7 +173,7 @@ function subscribeToThread($threadID, $userId, $phoneNumber, $conn) {
     if (strlen($phoneNumber) != 12) {
         return false;
     }
-    
+
     $query = "INSERT INTO threadSubscribers (ThreadID, UserID, PhoneNumber) VALUES (?,?,?);";
 
     $statement = $conn -> prepare($query);
@@ -183,4 +183,17 @@ function subscribeToThread($threadID, $userId, $phoneNumber, $conn) {
     $statement -> execute();
 
     return true;
+}
+
+function getSubscribersToThread($threadId, $conn) {
+    $query = "SELECT UserID, PhoneNumber FROM threadSubscribers WHERE ThreadID = ?;";
+
+    $statement = $conn -> prepare($query);
+    $statement -> bind_param("i", $threadId);
+
+    $statement -> execute();
+
+    $statement -> store_result();
+
+    return $statement;
 }
