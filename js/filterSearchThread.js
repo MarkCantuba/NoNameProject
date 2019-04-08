@@ -1,24 +1,23 @@
 $(document).ready (function() {
-  var threadSection = $("#threadArea").children();
-  
+  var threadSection = $("#threadArea").children('div');
+
    $("#threadSearch").keyup(function () {
-       var currentText = $("#threadSearch").val().toLowerCase().replace(' ', '');
+       var currentText = $("#threadSearch").val().toLowerCase().replace(/\s/g, '');
        
-       var index = currentText.length - 1;
-       var currentChar = currentText.charAt(index);
+       var index = currentText.length;
        
+       var currentChar = currentText.substr(0, index);
+
        for (var i = 0; i < threadSection.length; i++) {
-           var currentId = threadSection.get(i).id;
-           var currentCharacter = currentId.charAt(index).toLowerCase();
            
+           var currentId = threadSection.get(i).id;
+           var currentCharacter = currentId.substr(0,index).toLowerCase();
+           alert(currentCharacter + " " + currentChar);
            if (currentCharacter !== currentChar) {
-               $("#"+currentId).hide();
+               threadSection.get(i).style.display = "none";
            } else {
-               $("#"+currentId).show();
+               threadSection.get(i).style.display = "";
            }
-       }
-       
-        
-   });
-   
+       }  
+   }); 
 });

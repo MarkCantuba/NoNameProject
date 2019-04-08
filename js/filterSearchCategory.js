@@ -2,7 +2,7 @@ $(document).ready(function() {
    var getChildren = $("#categoryTableBody").children('tr'); 
    
    $("#categorySearch").keyup(function () {
-       var currentValue = $("#categorySearch").val().replace(' ', '').toLowerCase();
+       var currentValue = $("#categorySearch").val().replace(/\s/g, '').toLowerCase();
        var currentIndex = currentValue.length;
        
        for (var i = 0; i < getChildren.length; i++) {

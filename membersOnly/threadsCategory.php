@@ -31,7 +31,7 @@ if (!isset($_SESSION['IsActive']) || !$_SESSION['IsActive']) {
 
         <script type="text/javascript" src="../js/showComments.js"></script>
 
-        <!--<script type="text/javascript" src="../js/filterSearchThread.js"></script>-->
+        <script type="text/javascript" src="../js/filterSearchThread.js"></script>
     </head>
 
     <body class="d-flex flex-column">
@@ -40,7 +40,7 @@ if (!isset($_SESSION['IsActive']) || !$_SESSION['IsActive']) {
 
         <button id="CreateThread" class="btn btn-dark" data data-toggle="modal" data-target="#CreateThreadModal"> Create New Thread </button>
 
-        <!--<input id="threadSearch" class="form-control text-center" type="text" placeholder="Search Thread" aria-label="Search Thread">-->
+        <input id="threadSearch" class="form-control text-center" type="text" placeholder="Search Thread" aria-label="Search Thread">
 
         <div class="container-fluid text-center font-weight-bold">
             <h1 class="font-weight-bold"> <?php echo $_GET['category'] ?> </h1>

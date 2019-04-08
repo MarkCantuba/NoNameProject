@@ -35,9 +35,10 @@ if (!isset($_SESSION['IsActive']) || !$_SESSION['IsActive']) {
 
     <body class="d-flex flex-column">
         <?php require '../headerFooter/Header.php'; ?>
-        <input id="categorySearch" class="form-control text-center" type="text" placeholder="Search Category" aria-label="Search Category">
 
         <button id="CreateCategory" class="btn btn-dark" data-toggle="modal" data-target="#CreateCategoryModal"> Add Category </button>
+
+        <input id="categorySearch" class="form-control text-center" type="text" placeholder="Search Category" aria-label="Search Category">
 
         <table id="Dashboard" class="table table-bordered table-striped text-center">
             <thead class="thead-dark">
